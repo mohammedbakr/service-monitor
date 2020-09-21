@@ -1,0 +1,8 @@
+2020/09/21 10:57:39 https://www.golang.org 200 OK 426.7541ms
+2020/09/21 10:57:40 https://www.example.com 200 OK 161.909ms
+2020/09/21 10:57:57 https://www.golang.org 200 OK 415.7645ms
+2020/09/21 10:57:58 https://www.example.com 200 OK 160.9091ms
+2020/09/21 10:58:16 https://www.golang.org 200 OK 412.7672ms
+2020/09/21 10:58:17 https://www.example.com 200 OK 160.9102ms
+2020/09/21 10:58:36 https://www.golang.org 200 OK 412.7642ms
+2020/09/21 10:58:37 https://www.example.com 200 OK 160.9099ms
