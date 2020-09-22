@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/rs/cors"
-	"github.com/tgg/datajson"
+	"github.com/service-monitor/back-end/datajson"
 )
 
 type Duration struct {

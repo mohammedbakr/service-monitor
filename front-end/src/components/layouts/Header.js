@@ -9,7 +9,7 @@ function Header() {
         <Link 
           to='/'
         >
-          k8-traffic-generator
+          Service Monitor
         </Link>
       </span>
       <Nav />

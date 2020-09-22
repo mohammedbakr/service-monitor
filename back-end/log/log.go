@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"github.com/chromedp/chromedp"
-	"github.com/tgg/timeresponse"
+	"github.com/service-monitor/back-end/timeresponse"
 )
 
 //Urls is

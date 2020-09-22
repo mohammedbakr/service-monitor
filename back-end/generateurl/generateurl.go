@@ -11,8 +11,8 @@ import (
 	"time"
 
 	"github.com/chromedp/chromedp"
-	"github.com/tgg/config"
-	"github.com/tgg/screenshot"
+	"github.com/service-monitor/back-end/config"
+	"github.com/service-monitor/back-end/screenshot"
 )
 
 //Urls is

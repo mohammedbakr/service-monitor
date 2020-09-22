@@ -5,7 +5,7 @@ function NavMenu(props) {
   return (
     <div>
       <div className="font-bold py-3">
-        k8-traffic-generator
+        Service Monitor
       </div>
       <ul>
         <li>
