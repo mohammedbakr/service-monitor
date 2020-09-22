@@ -19,6 +19,15 @@ function NavMenu(props) {
         </li>
         <li>
           <Link
+            to="/add-credentials"
+            className="text-blue-500 border-t border-b py-3 block"
+            onClick={props.closeMenu}
+          >
+            Add -Credentials
+          </Link>
+        </li>
+        <li>
+          <Link
             to="/about"
             className="text-blue-500 border-b py-3 block"
             onClick={props.closeMenu}
