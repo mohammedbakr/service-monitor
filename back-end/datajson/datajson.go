@@ -7,9 +7,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/tgg/timeresponse"
-	"github.com/tgg/generateurl"
-	"github.com/tgg/log"
+	"github.com/service-monitor/back-end/timeresponse"
+	// "github.com/service-monitor/back-end/generateurl"
+	// "github.com/service-monitor/back-end/log"
 	
 )
 
@@ -78,10 +78,10 @@ func Foo(w http.ResponseWriter, r *http.Request) {
 		}
 
 		s = append(s, profiless...)
-			generateurl.Thefile("urltxt.txt", "upload")
-			generateurl.Thefile("urltxt.txt", "download")
-			log.Filelog("urltxt.txt")
-			generateurl.Thefile("urltxt.txt", "open")
+			// generateurl.Thefile("urltxt.txt", "upload")
+			// generateurl.Thefile("urltxt.txt", "download")
+			// log.Filelog("urltxt.txt")
+			// generateurl.Thefile("urltxt.txt", "open")
 	}
 	
 	json.NewEncoder(w).Encode(s)

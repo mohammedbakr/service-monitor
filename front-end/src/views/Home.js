@@ -3,9 +3,10 @@ import Loader from '../components/Loader'
 import Result from '../components/Result'
 import axios from 'axios'
 import BarChart from '../components/BarChart'
+import { Link } from 'react-router-dom'
 
 function Home() {
- const url = 'http://localhost:10000/api'
+  const url = 'http://localhost:10000/api'
   const [results, setResults] = useState({
     loading: false,
     data: null,
@@ -67,6 +68,12 @@ function Home() {
   return (
     <div className="text-center">
       <h1 className="font-bold text-2xl">Generate Tests</h1>
+      <Link
+        to="/add-configurations"
+        className="text-blue-500 py-3 block"
+      >
+        Add your own configurations
+      </Link>
       <div className="my-3">
         <button 
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"

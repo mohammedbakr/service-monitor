@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from './components/layouts/Header';
 import Home from './views/Home';
+import AddConfigurations from './components/AddConfigurations';
 import About from './views/About';
 import Footer from './components/layouts/Footer';
 
@@ -13,12 +14,9 @@ function App() {
       
         <div className="p-3">
           <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/add-configurations" component={AddConfigurations} />
           </Switch>
         </div>
 

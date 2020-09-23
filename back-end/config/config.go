@@ -12,7 +12,7 @@ func Config() (time.Duration, string) {
 	if os.Getenv("ENVIROMENT") == "DEV" {
 		viper.SetConfigName("config")
 		viper.SetConfigType("toml")
-		viper.AddConfigPath("github.com/tgg")
+		viper.AddConfigPath("github.com/service-monitor/back-end")
 		viper.ReadInConfig()
 	} else {
 		viper.AutomaticEnv()
