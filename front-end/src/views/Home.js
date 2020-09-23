@@ -6,7 +6,7 @@ import BarChart from '../components/BarChart'
 import { Link } from 'react-router-dom'
 
 function Home() {
- const url = 'http://localhost:10000/api'
+  const url = 'http://localhost:10000/api'
   const [results, setResults] = useState({
     loading: false,
     data: null,
@@ -70,7 +70,7 @@ function Home() {
       <h1 className="font-bold text-2xl">Generate Tests</h1>
       <Link
         to="/add-configurations"
-        className="text-blue-500 border-t border-b py-3 block"
+        className="text-blue-500 py-3 block"
       >
         Add your own configurations
       </Link>
