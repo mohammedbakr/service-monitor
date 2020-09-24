@@ -1,38 +1,23 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { produce } from "immer";
+import { generate } from "shortid";
 
 function AddConfigurations(props) {
-  const [url, setUrl] = useState('')
-  // const [increaseUrl, setIncreaseUrl] = useState([])
-  // let input = 1
-
-  const onChange = (e) => {
-    setUrl(e.target.value)
-  }
-
-  // const increaseUrlHandler = () => {
-  //   // console.log('clicked')
-  //     console.log('clicked')
-  //     input = 2
-  //     console.log(input)
-  //     return input
-  // }
+  const [urls, setUrls] = useState([
+    { id: '1', url: "https://www.google.com" }
+  ]);
 
   const onSubmit = (e) => {
     e.preventDefault()
-    if (url !== '') {
-
-      console.log(url)
-
-      axios.post('http://localhost:10000/api/configurations', {
-        Test: url
-      })
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
-
-      setUrl('')
-      props.history.push('/')
-    }
+    console.log(JSON.stringify(urls.map(url => url.url)))
+    axios.post('http://localhost:10000/api/configurations', {
+      // test: JSON.stringify(urls, null, 2)
+      // test: urls
+      test: JSON.stringify(urls.map(url => url.url))
+    })
+      .then(response => console.log(['success', response]))
+      .catch(error => console.log(['error', error]))
   }
 
   return (
@@ -41,32 +26,56 @@ function AddConfigurations(props) {
         Add Your Own Configurations
       </h1>
       <form onSubmit={onSubmit} className="w-full max-w-lg mt-3 px-4">
-
-        <div className="mt-4">
-          <label htmlFor="url" className="block text-gray-700 text-sm font-bold">Url:</label>
-          <input
-            type="text"
-            id="url"
-            className="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter Url"
-            name="url"
-            value={url}
-            onChange={onChange}
-          />
-        </div>
-        {/* {input} */}
-
-        {/* {increaseUrl} */}
-        {/* <div className="w-1/6 flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-blue-700 bg-blue-100 border border-blue-300">
+        <label htmlFor="url" className="block text-gray-700 text-sm font-bold">Url:</label>
+        {urls.map((p, index) => {
+          return (
+            <div key={p.id} className="mt-2">
+              <input
+                className="mt-2 shadow appearance-none border rounded w-5/6 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                onChange={e => {
+                  const url = e.target.value;
+                  setUrls(currenturls =>
+                    produce(currenturls, v => {
+                      v[index].url = url;
+                    })
+                  );
+                }}
+                value={p.url}
+                placeholder="Enter url"
+              />
+              <button disabled={p.id === '1'}
+                className="text-xs mx-4 bg-red-500 hover:bg-red-700 text-white font-bold px-1 rounded focus:outline-none focus:shadow-outline"
+                onClick={() => {
+                  setUrls(currenturls =>
+                    currenturls.filter(x => x.id !== p.id)
+                  );
+                }}
+              >
+                X
+              </button>
+            </div>
+          );
+        })}
+        <div
+          className="w-1/6 flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-blue-700 bg-blue-100 border border-blue-300"
+        >
           <div
             className="text-xs font-normal leading-none max-w-full flex-initial"
             style={{cursor: 'pointer'}}
-            onClick={increaseUrlHandler}
+            placeholder="add new url"
+            onClick={() => {
+              setUrls(currenturls => [
+                ...currenturls,
+                {
+                  id: generate(),
+                  url: "",
+                }
+              ]);
+            }}
           >
-            (+)Url
+            (+) url
           </div>
-        </div> */}
-
+        </div>
         <div className="mt-6">
           <button
             type="submit"
@@ -75,10 +84,10 @@ function AddConfigurations(props) {
             Submit Configurations
           </button>
         </div>
-
       </form>
+      {/* <div>{JSON.stringify(urls, null, 2)}</div> */}
     </div>
-  )
-}
+  );
+};
 
 export default AddConfigurations
