@@ -7,14 +7,14 @@ to download or whatever, needs **adaptation**(some kind of modification or analy
 
 To know more about the ICAP protocol, [check this out](https://tools.ietf.org/html/rfc3507).
 
-# Project Objectives:
-The objective of this project is to create service to allow us to monitor production and pre-production services, this service should have the following features:
-1- Monitor the health and availability of other services, example: [https://www.gov.uk.glasswall-icap.com/](https://www.gov.uk.glasswall-icap.com/).
-2- It should be able to visualize in a web interface the availability and health of other services.
-3- Be able to do a L7 health checks against the protocols of interest: HTTP, HTTPS, ICAP.
-4- Verify that files are passing through the CDR engine for a specific website.
-5- Sending alerts when a specific service down criteria is met, maybe Slack based alerts, emails, Syslog, SNMP traps or similar.
-6- Take corrective actions, as restarting a service or execute a script when a service is down and relevant action is defined.
+## Project Objectives:
+The objective of this project is to create service to allow us to monitor production and pre-production services, this service should have the following features:<br />
+1- Monitor the health and availability of other services, example: [https://www.gov.uk.glasswall-icap.com/](https://www.gov.uk.glasswall-icap.com/).<br />
+2- It should be able to visualize in a web interface the availability and health of other services.<br />
+3- Be able to do a L7 health checks against the protocols of interest: HTTP, HTTPS, ICAP.<br />
+4- Verify that files are passing through the CDR engine for a specific website.<br />
+5- Sending alerts when a specific service down criteria is met, maybe Slack based alerts, emails, Syslog, SNMP traps or similar.<br />
+6- Take corrective actions, as restarting a service or execute a script when a service is down and relevant action is defined.<br />
 
 ### Prerequisites
 
