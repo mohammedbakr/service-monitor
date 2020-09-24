@@ -116,11 +116,11 @@ func Urlcheck(url string) (bool, int, string) {
 	}
 	time.Sleep(5 * time.Second)
 	if resp.StatusCode == 200 {
-		fmt.Println(true, resp.StatusCode, http.StatusText(resp.StatusCode))
+		// fmt.Println(true, resp.StatusCode, http.StatusText(resp.StatusCode))
 		return true, resp.StatusCode, http.StatusText(resp.StatusCode)
 
 	}
-	fmt.Println(false, resp.StatusCode, http.StatusText(resp.StatusCode))
+	// fmt.Println(false, resp.StatusCode, http.StatusText(resp.StatusCode))
 	//time.Sleep(5 * time.Second)
 	return false, resp.StatusCode, http.StatusText(resp.StatusCode)
 

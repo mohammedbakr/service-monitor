@@ -17,13 +17,15 @@ export function useAxiosGet(url){
     })
     axios.get(url)
       .then(response => {
+        // console.log(response.data)
         setRequest({
           loading: false,
           data: response.data,
           error: false
         })
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error)
         setRequest({
           loading: false,
           data: null,

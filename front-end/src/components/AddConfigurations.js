@@ -1,9 +1,11 @@
-import axios from 'axios'
+// import axios from 'axios'
 import React, { useState } from 'react'
 import { produce } from "immer";
 import { generate } from "shortid";
+// import { useAxiosGet } from '../hooks/HttpRequests';
 
 function AddConfigurations(props) {
+  // const url = 'https://jsonplaceholder.typicode.com/todos?_limit=10'
   const [urls, setUrls] = useState([
     { id: '1', url: "https://www.google.com" }
   ]);
@@ -11,13 +13,13 @@ function AddConfigurations(props) {
   const onSubmit = (e) => {
     e.preventDefault()
     console.log(JSON.stringify(urls.map(url => url.url)))
-    axios.post('http://localhost:10000/api/configurations', {
-      // test: JSON.stringify(urls, null, 2)
-      // test: urls
-      test: JSON.stringify(urls.map(url => url.url))
-    })
-      .then(response => console.log(['success', response]))
-      .catch(error => console.log(['error', error]))
+    // axios.post('http://localhost:10000/api/configurations', {
+    //   // test: JSON.stringify(urls, null, 2)
+    //   // test: urls
+    //   test: JSON.stringify(urls.map(url => url.url))
+    // })
+    //   .then(response => console.log(['success', response]))
+    //   .catch(error => console.log(['error', error]))
   }
 
   return (
