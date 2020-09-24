@@ -3,16 +3,29 @@ import React, { useState } from 'react'
 import { produce } from "immer";
 import { generate } from "shortid";
 // import { useAxiosGet } from '../hooks/HttpRequests';
+// import Result from './Result';
 
-function AddConfigurations(props) {
-  // const url = 'https://jsonplaceholder.typicode.com/todos?_limit=10'
+function AddConfigurations() {
+  // const url = 'https://jsonplaceholder.typicode.com/todos?_limit=2'
   const [urls, setUrls] = useState([
     { id: '1', url: "https://www.google.com" }
   ]);
 
+  // let ids = null
+  // let titles = null
+  // const results = useAxiosGet(url)
+  // if (results.data) {
+  //   ids = results.data.map(result => result.id)
+  //   titles = results.data.map(result => result.title)
+  //   setUrls([
+  //     {id: '2', url: 'http://yahoo.com'}
+  //   ])
+  // }
+  // console.log(urls)
+
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(JSON.stringify(urls.map(url => url.url)))
+    console.log(urls)
     // axios.post('http://localhost:10000/api/configurations', {
     //   // test: JSON.stringify(urls, null, 2)
     //   // test: urls

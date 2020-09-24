@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+          $.ajax({
+          type: "GET",
+          url: "http://localhost:10000/api/configurations",
+          success: function (result) {
+            //set your variable to the result
+            console.log(result);
+          },
+          error: function (result) {
+            // $("#div1").html(result.responseJSON);
+            // console.log(result.responseJSON);
+            console.log(result)
+            //handle the error
+          },
+        });
+      });
+    </script>
+  </head>
+  <body>
+   
+    <div id="div1"><h2> html </h2></div>
+  
+
+  </body>
+</html>

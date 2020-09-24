@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { useAxiosGet } from '../hooks/HttpRequests'
 
 function Home() {
-  const url = 'http://localhost:10000/api/configurations'
+  const url = 'http://localhost:10000/api/fetch-data'
   // const url = 'https://jsonplaceholder.typicode.com/todos?_limit=10'
   const results = useAxiosGet(url)
 

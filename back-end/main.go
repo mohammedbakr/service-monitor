@@ -1,11 +1,12 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"log"
+	// "bufio"
+	// "encoding/json"
+	// "fmt"
 	"net/http"
-	"os"
+	// "os"
+	"time"
 
 	"github.com/service-monitor/back-end/urlcheck"
 	"github.com/rs/cors"
@@ -21,47 +22,131 @@ import (
 }*/
 
 type Item struct {
-	Typetf bool   `json:"state"`
-	Num    int    `json:"code"`
-	Def    string `json:"status"`
+	//	Typetf bool   `json:"state"`
+	Num       int       `json:"code"`
+	Def       string    `json:"status"`
+	Timestamp time.Time `json:"time"`
 }
 type Items []Item
 
 func main() {
-	go func() {
-		for {
+	// go func() {
+	// 	var s []Item
+	// 	//var fileee io.Writer
+	// 	//intArray := [5]int{}
+	// 	//	var jsonFile io.Writer
 
-			a, b, c := urlcheck.Urlcheck("https://www.yahoo.com")
-			item := Item{a, b, c}
-			js, err := json.Marshal(item)
-			if err != nil {
-				panic(err)
+	// 	//var jsonFile string
+	// 	//var filee []byte
+	// 	//for i := 0; i < len(intArray); i++ {
+	// 	//	fmt.Println(intArray[i])
+	// 	//	}
 
-			}
-			fmt.Println(string(js))
-			/*	f, err := os.Create("a.txt")
-				if err != nil {
-					defer f.Close()
-				}
-				w := bufio.NewWriter(f)
-				n4, err := w.WriteString(js)
-				if err != nil {
-					panic(err)
-				}
-				fmt.Printf("wrote %d bytes\n", n4)*/
-			jsonFile, err := os.OpenFile("title.txt",
-				os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-			if err != nil {
-				log.Println(err)
-			}
-			//	jsonFile, err := os.Create("./data.txt")
-			jsonFile.Write(js)
-			jsonFile.WriteString("\n")
-		}
-	}()
+	// 	for {
+	// 		file, err := os.Open("urls.txt")
+	// 		if err != nil {
+	// 			panic(err)
+	// 		}
+	// 		scanner := bufio.NewScanner(file)
+	// 		scanner.Split(bufio.ScanLines)
+	// 		var txtlines []string
+
+	// 		for scanner.Scan() {
+	// 			txtlines = append(txtlines, scanner.Text())
+	// 		}
+
+	// 		file.Close()
+
+	// 		for _, eachline := range txtlines {
+	// 			fmt.Println(eachline)
+
+	// 			a, b, c := urlcheck.Urlcheck(eachline)
+
+	// 			/*itemss := &Item{
+	// 				Num:       a,
+	// 				Def:       b,
+	// 				Timestamp: c,
+	// 			}*/
+
+	// 			itemss := []Item{
+	// 				{a, b, c},
+	// 			}
+	// 			//s = append(s, itemss...)
+	// 			//	file, _ := json.MarshalIndent(itemss, "", " ")
+
+	// 			//	_ = ioutil.WriteFile("title.txt", file, 0644)
+	// 			//filee, _ := json.MarshalIndent([]*Item{itemss}, "", " ")
+	// 			//	filee, _ := json.MarshalIndent(itemss, "", " ")
+	// 			s = append(s, itemss...)
+	// 			/*file, _ := os.OpenFile("app.txt", os.O_CREATE, os.ModePerm)
+	// 			defer file.Close()
+	// 			encoder := json.NewEncoder(file)
+	// 			encoder.Encode(s)*/
+
+	// 			//	_ = ioutil.WriteFile("title.txt", filee, 0644)
+	// 		}
+	// 		//break
+	// 		fileee, _ := os.OpenFile("app.txt", os.O_CREATE, os.ModePerm)
+	// 		defer file.Close()
+	// 		encoder := json.NewEncoder(fileee)
+	// 		encoder.Encode(s)
+	// 	}
+	// 	//_ = ioutil.WriteFile("title.txt", s, 0644)
+
+	// 	//	_ = ioutil.WriteFile("title.txt", s, 0644)
+
+	// 	//_ = ioutil.WriteFile("title.txt", s, 0644)
+
+	// 	//	item := Item{a, b, c}
+	// 	/*encoder := json.NewEncoder(os.Stdout)
+	// 	err = encoder.Encode(&s)
+	// 	if err != nil {
+	// 		panic(err)
+	// 	}
+
+	// 	/*js, err := json.Marshal(itemss)
+	// 	if err != nil {
+	// 		panic(err)
+
+	// 	}
+	// 	fmt.Println(string(js))
+
+	// 	/*	f, err := os.Create("a.txt")
+	// 		if err != nil {
+	// 			defer f.Close()
+	// 		}
+	// 		w := bufio.NewWriter(f)
+	// 		n4, err := w.WriteString(js)
+	// 		if err != nil {
+	// 			panic(err)
+	// 		}
+	// 		fmt.Printf("wrote %d bytes\n", n4)*/
+	// 	/*jsonFile, err := os.OpenFile("title.txt",
+	// 		os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	// 	if err != nil {
+	// 		log.Println(err)
+	// 	}
+	// 	//json.NewEncoder(os.Stdout).Encode(s)
+	// 	/*	jsonFile, err := os.OpenFile("title.txt",
+	// 			os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	// 		if err != nil {
+	// 			log.Println(err)
+	// 		}*/
+
+	// 	//	jsonFile, err := os.Create("./data.txt")
+	// 	//jsonFile.Write(i)
+	// 	//	}
+	// 	//	jsonFile.Write(string(x))
+
+	// 	//	jsonFile.WriteString(",")
+	// 	//	}
+
+	// 	//	_ = ioutil.WriteFile("title.txt", s, 0644)
+	// 	//	_ = ioutil.WriteFile("title.txt", s, 0644)
+	// }()
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/api/configurations", urlcheck.Handlercheck)
+	mux.HandleFunc("/api/fetch-data", urlcheck.Handlercheck)
 
 	handler := cors.Default().Handler(mux)
 	http.ListenAndServe(":10000", handler)

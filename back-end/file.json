@@ -1,0 +1,16 @@
+{
+  "search":{
+    "filterColumns":[
+      {
+        "mode": "like",
+        "name": "object_guid",
+        "value": "9e16b00d"
+      },
+      {
+        "mode": "like",
+        "name": "common_name",
+        "value": "WIN"
+      }
+    ]
+  }
+}
