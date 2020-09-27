@@ -79,13 +79,9 @@ func f() {
 			}
 
 			file.Close()
-
-			for i, eachline := range txtlines {
-				if i < 1 {
-					continue
-				}
-				ss += i
-
+			ss = 0
+			for _, eachline := range txtlines {
+				ss++
 				var urls = []string{
 					eachline,
 				}
@@ -106,12 +102,10 @@ func f() {
 
 					}
 					fmt.Println("number of lines:", lineCount)
-
 					var arrDetails []Item
 					for _, v := range dataa {
 						arrDetails = append(arrDetails, Item{
-
-							Id:  i,
+							Id:  ss,
 							Url: eachline,
 							Timeresp: timeresp,
 							Num:      b,
@@ -129,15 +123,13 @@ func f() {
 					}
 					fmt.Println("number of lines:", lineCount)
 					s = append(s, arrDetails...)
-
-					if len(s) == (lineCount * 1) {
+					if len(s) == (lineCount*1)+1 {
 						first := s[0]
 						fmt.Println(first)
 
 						s = s[1:]
 					}
 				}
-
 			}
 			data, err := json.Marshal(s)
 			if err != nil {
@@ -147,7 +139,9 @@ func f() {
 			x = string(data)
 			fmt.Println(string(data))
 			time.Sleep(5 * time.Second)
+
 		}
+
 	}()
 
 }
@@ -167,27 +161,24 @@ func fetch(url string, timestamp chan<- string) {
 	start := time.Now()
 	_, err := http.Get(url)
 	if err != nil {
-		// Send an error to the `ch` channel if one is encountered:
 		timestamp <- fmt.Sprint(err)
 		return
 	}
 
-	// Send a summary string to the `ch` channel containing the URL, its request response time, and its HTTP status code
 	timestamp <- fmt.Sprintf("%s", start)
 
 }
 func fetchcode(url string, statuscode chan<- string) {
 	resp, err := http.Get(url)
 	if err != nil {
-		// Send an error to the `ch` channel if one is encountered:
 		statuscode <- fmt.Sprint(err)
 		return
 	}
-	// Send a summary string to the `ch` channel containing the URL, its request response time, and its HTTP status code
+
 	statuscode <- fmt.Sprintf("%d", resp.StatusCode)
 }
 func asyncHttpGets(urls []string) []*HttpResponse {
-	ch := make(chan *HttpResponse, len(urls)) // buffered
+	ch := make(chan *HttpResponse, len(urls))
 	responses := []*HttpResponse{}
 	for _, url := range urls {
 		go func(url string) {

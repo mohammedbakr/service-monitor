@@ -90,6 +90,5 @@ func Urlcheck(url string) (int, string, time.Time) {
 
 	}
 	fmt.Println(false, resp.StatusCode, http.StatusText(resp.StatusCode), now)
-	//time.Sleep(5 * time.Second)
 	return resp.StatusCode, http.StatusText(resp.StatusCode), now
 }
