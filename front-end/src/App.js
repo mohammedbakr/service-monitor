@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from './components/layouts/Header';
 import Home from './views/Home';
-import AddConfigurations from './components/AddConfigurations';
+// import AddConfigurations from './components/AddConfigurations';
 import About from './views/About';
+import UrlDetails from './views/UrlDetails';
 import Footer from './components/layouts/Footer';
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
-            <Route path="/add-configurations" component={AddConfigurations} />
+            <Route path="/details/:id" component={UrlDetails} />
           </Switch>
         </div>
 

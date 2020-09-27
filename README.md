@@ -1,12 +1,5 @@
 # service-monitor
 
-## What is ICAP?
-
-**ICAP** stands for **Internet Content Adaptation Protocol**. If a **content** (for example: file) you've requested over the internet
-to download or whatever, needs **adaptation**(some kind of modification or analysis), the proxy server sends the content to the ICAP server for adaptation and after performing the required tasks on the content, the ICAP server sends it back to the proxy server so that it may return the adapted content back to the destination. This can occur both during request and response.
-
-To know more about the ICAP protocol, [check this out](https://tools.ietf.org/html/rfc3507).
-
 ## Project Objectives:
 The objective of this project is to create service to allow us to monitor production and pre-production services, this service should have the following features:<br />
 1- Monitor the health and availability of other services, example: [https://www.gov.uk.glasswall-icap.com/](https://www.gov.uk.glasswall-icap.com/).<br />
@@ -32,13 +25,13 @@ Or clone the develop branch:
 git clone -b develop https://github.com/k8-proxy/service-monitor.git
 ```
 
-Enter back-end directory and copy this command inside the directory path.
+Enter back-end directory and copy this command inside the directory path in terminal.
 To start the back-end server
 ```
 go run main.go
 ```
-
-Enter front-end directory and copy this command inside the directory path
+Leave the terminal open to run in background and then<br />
+Enter front-end directory and copy this command inside the directory path in another terminal
 ```
 npm install
 npm start

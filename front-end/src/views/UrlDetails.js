@@ -1,17 +1,17 @@
 import React from 'react'
-import Loader from '../components/Loader'
-import Result from '../components/Result'
-import BarChart from '../components/BarChart'
 import { useAxiosGet } from '../hooks/HttpRequests'
+import Loader from '../components/Loader'
 
-function Home() {
+function UrlDetails(props) {
   const url = 'http://localhost:10000/api'
+  // const url = 'https://jsonplaceholder.typicode.com/todos?_limit=10'
+  // const results = useAxiosGet(url + props.match.params.id)
+  // const id = props.match.params.id
   const results = useAxiosGet(url)
 
   let loader = null
   let content = null
   let error = null
-  let chartContent = {}
 
   if (results.loading) {
     loader = <Loader></Loader>
@@ -25,32 +25,20 @@ function Home() {
     content =
       results.data.map((result, index) => 
         <tr key={index}>
-            <Result result={result}/>
+          <td className="border px-4 py-2">{result.url}</td>
+          <td className="border px-4 py-2">{result.timeresponse}</td>
+          <td className="border px-4 py-2">{result.time}</td>
+          {(result.code >= 200 && result.code < 400) ? <td className="border px-4 py-2 bg-green-500">{result.code}</td> : <td className="border px-4 py-2 bg-red-500">{result.code}</td>}
         </tr>
       )
-    
-    chartContent = {
-      labels: results.data.map(result => result.url),
-      datasets: [
-        {
-          label: 'Time Response (ms)',
-          data: results.data.map(result => parseFloat(result.timeresponse)),
-          borderColor: results.data.map(() => 'rgba(54, 162, 235, 0.2)'),
-          backgroundColor: results.data.map((result) => result.code === 200 ? 'rgba(0,128, 0, 0.5)' : 'rgba(225, 0, 0, .5)')
-        }
-      ]
-    }
   }
 
   return (
     <div className="text-center">
-      <div className="border-b">
-        <h1 className="font-bold text-2xl">Health Check</h1>
-      </div>
       {loader}
       {error}
       <div style={{display: content ? '' : 'none'}}>
-        <div className="mt-6">
+        <div className="mt-3">
           <div className="font-bold text-2xl border-b w-1/3 m-auto">
             Results:
           </div>
@@ -69,12 +57,9 @@ function Home() {
           </table>
         </div>
         <hr/>
-        <div className="mt-3">
-          <BarChart chartData={chartContent} />
-        </div>
       </div>
     </div>
   )
 }
 
-export default Home
+export default UrlDetails

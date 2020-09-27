@@ -11,30 +11,52 @@ export function useAxiosGet(url){
 
   useEffect(() => {
     setRequest({
-      loading: false,
+      loading: true,
       data: null,
       error: false
     })
-    // axios.get(url, {
-    //   headers: { 'Content-Type': 'application/json' }
-    // })
     axios.get(url)
       .then(response => {
-        console.log(response)
-        // setRequest({
-        //   loading: false,
-        //   data: response.data,
-        //   error: false
-        // })
+        setRequest({
+          loading: false,
+          data: response.data,
+          error: false
+        })
       })
       .catch((error) => {
         console.log(error)
-        // setRequest({
-        //   loading: false,
-        //   data: null,
-        //   error: true
-        // })
+        setRequest({
+          loading: false,
+          data: null,
+          error: true
+        })
       })
+
+    const reloadUrl = setInterval(() => {
+      setRequest({
+        loading: true,
+        data: null,
+        error: false
+      })
+      axios.get(url)
+      .then(response => {
+        setRequest({
+          loading: false,
+          data: response.data,
+          error: false
+        })
+      })
+      .catch(error => {
+        console.log(error)
+        setRequest({
+          loading: false,
+          data: null,
+          error: true
+        })
+      })
+    }, 10000)
+
+    return () => clearInterval(reloadUrl)
   }, [url])
 
   return request

@@ -46,7 +46,7 @@ func LineCounter(r io.Reader) (int, error) {
 
 //Handlercheck is
 func Handlercheck(w http.ResponseWriter, r *http.Request) {
-	file, err := os.Open("file.json")
+	file, err := os.Open("app.txt")
 
 	if err != nil {
 		log.Fatalf("failed opening file: %s", err)
