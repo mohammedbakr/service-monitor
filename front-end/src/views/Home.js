@@ -23,8 +23,8 @@ function Home() {
 
   if (results.data) {
     content =
-      results.data.map((result, index) => 
-        <tr key={index}>
+      results.data.map((result) => 
+        <tr key={result.id}>
             <Result result={result}/>
         </tr>
       )
@@ -57,7 +57,8 @@ function Home() {
           <table className="table-auto w-full mt-6">
             <thead>
               <tr>
-                <th className="px-4 py-2">Url</th>
+                <th className="px-4 py-2">ID</th>
+                <th className="px-4 py-2">URL</th>
                 <th className="px-4 py-2">Response Time</th>
                 <th className="px-4 py-2">Timestamp</th>
                 <th className="px-4 py-2">Response Code</th>

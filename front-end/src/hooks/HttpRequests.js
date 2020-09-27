@@ -54,7 +54,7 @@ export function useAxiosGet(url){
           error: true
         })
       })
-    }, 10000)
+    }, 30000)
 
     return () => clearInterval(reloadUrl)
   }, [url])

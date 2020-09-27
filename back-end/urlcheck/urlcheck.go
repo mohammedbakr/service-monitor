@@ -14,7 +14,6 @@ import (
 
 //Data is
 type Data struct {
-	//Tf     bool   `json:"tf"`
 	Code   int    `json:"code"`
 	Status string `json:"status"`
 	Time   string `json:"time"`
@@ -74,61 +73,8 @@ func Handlercheck(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-
-	//fmt.Println(t.Test)
-	//for {
-	//	Urlcheck(t.Test)
-	//	}
-	/*	f, err := os.Create("testt.txt")
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		l, err := f.WriteString(t.Test)
-		if err != nil {
-			fmt.Println(err)
-			f.Close()
-			return
-		}
-		fmt.Println(l, "bytes written successfully")
-		err = f.Close()
-		if err != nil {
-			fmt.Println(err)
-			return
-		}*/
-} /*
-	file, err := os.Open("/path/to/file.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		fmt.Println(scanner.Text())
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-	json.NewEncoder(w).Encode(s)
-	w.Write(scanner.Text())
-
 }
 
-/*
-func Handlercheck(w http.ResponseWriter, r *http.Request) {
-	var s []Data
-	tf, code, status := Urlcheck("https://www.google.com")
-	thedata := []Data{
-		{tf, code, status},
-	}
-	s = append(s, thedata...)
-	json.NewEncoder(w).Encode(s)
-	//	time.Sleep(5 * time.Second)
-
-}
-*/
 //Urlcheck is
 func Urlcheck(url string) (int, string, time.Time) {
 	now := time.Now()
@@ -146,7 +92,4 @@ func Urlcheck(url string) (int, string, time.Time) {
 	fmt.Println(false, resp.StatusCode, http.StatusText(resp.StatusCode), now)
 	//time.Sleep(5 * time.Second)
 	return resp.StatusCode, http.StatusText(resp.StatusCode), now
-
-	//time.Sleep(5 * time.Second)
-
 }
