@@ -1,65 +1,42 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Loader from '../components/Loader'
 import Result from '../components/Result'
-import axios from 'axios'
 import BarChart from '../components/BarChart'
-import { Link } from 'react-router-dom'
+import { useAxiosGet } from '../hooks/HttpRequests'
 
 function Home() {
   const url = 'http://localhost:10000/api'
-  const [results, setResults] = useState({
-    loading: false,
-    data: null,
-    error: false
-  })
-
-  const startTest = () => {
-    setResults({
-      loading: true,
-      data: null,
-      error: false
-    })
-    axios.get(url)
-      .then(response => {
-        setResults({
-          loading: false,
-          data: response.data,
-          error: false
-        })
-      })
-      .catch(error => {
-        setResults({
-          loading: false,
-          data: null,
-          error: true
-        })
-      })
-  }
+  const results = useAxiosGet(url)
 
   let loader = null
   let content = null
+  let error = null
   let chartContent = {}
 
   if (results.loading) {
     loader = <Loader></Loader>
   }
 
+  if (results.error) {
+    error = <p className="mt-3">Something went wrong...!</p>
+  }
+
   if (results.data) {
     content =
-      results.data.map((result, index) => 
-        <tr key={index}>
+      results.data.map((result) => 
+        <tr key={result.id}>
             <Result result={result}/>
         </tr>
       )
     
     chartContent = {
-      labels: results.data.map(result => result.urll),
+      labels: results.data.map(result => result.url),
       datasets: [
         {
           label: 'Time Response (ms)',
-          data: results.data.map(result => parseFloat(result.timeresp)),
+          data: results.data.map(result => parseFloat(result.timeresponse)),
           borderColor: results.data.map(() => 'rgba(54, 162, 235, 0.2)'),
-          backgroundColor: results.data.map(() => 'rgba(54, 162, 235, 0.2)')
+          backgroundColor: results.data.map((result) => result.code === 200 ? 'rgba(0,128, 0, 0.5)' : 'rgba(225, 0, 0, .5)')
         }
       ]
     }
@@ -67,43 +44,24 @@ function Home() {
 
   return (
     <div className="text-center">
-      <h1 className="font-bold text-2xl">Generate Tests</h1>
-      <Link
-        to="/add-configurations"
-        className="text-blue-500 py-3 block"
-      >
-        Add your own configurations
-      </Link>
-      <div className="my-3">
-        <button 
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
-          onClick={() => startTest()}
-          disabled={content}
-        >
-          Generate Test
-        </button>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full ml-3 focus:outline-none focus:shadow-outline"
-          onClick={() => setResults({...results, data: null})}
-          disabled={!content}
-        >
-          Clear Results
-        </button>
+      <div className="border-b">
+        <h1 className="font-bold text-2xl">Health Check</h1>
       </div>
-      <hr/>
-      <span style={{display: content ? 'none' : ''}}>Please click on Generate Test to start the test</span>
       {loader}
+      {error}
       <div style={{display: content ? '' : 'none'}}>
-        <div className="mt-3">
-          <div className="font-bold text-2xl">
+        <div className="mt-6">
+          <div className="font-bold text-2xl border-b w-1/3 m-auto">
             Results:
           </div>
-          <table className="table-auto w-full" >
+          <table className="table-auto w-full mt-6">
             <thead>
               <tr>
+                <th className="px-4 py-2">ID</th>
+                <th className="px-4 py-2">URL</th>
                 <th className="px-4 py-2">Response Time</th>
-                <th className="px-4 py-2">Status</th>
-                <th className="px-4 py-2">Url</th>
+                <th className="px-4 py-2">Timestamp</th>
+                <th className="px-4 py-2">Response Code</th>
               </tr>
             </thead>
             <tbody>

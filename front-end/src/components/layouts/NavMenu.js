@@ -19,15 +19,6 @@ function NavMenu(props) {
         </li>
         <li>
           <Link
-            to="/add-configurations"
-            className="text-blue-500 border-b py-3 block"
-            onClick={props.closeMenu}
-          >
-            Add Configurations
-          </Link>
-        </li>
-        <li>
-          <Link
             to="/about"
             className="text-blue-500 border-b py-3 block"
             onClick={props.closeMenu}

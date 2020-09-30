@@ -1,7 +1,0 @@
-title = "data"
-
-[duration]
-app_timeout = 100000 #Millisecond
-
-[text_file]
-url_file = "urltxt.txt"
