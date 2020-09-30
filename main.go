@@ -12,7 +12,7 @@ import (
 
 	//"github.com/gorilla/mux"
 	"github.com/gorilla/mux"
-	"github.com/healthcheck/timeresponse"
+	"github.com/service-monitor/back-end/timeresponse"
 	"github.com/rs/cors"
 )
 
