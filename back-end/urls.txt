@@ -1,4 +1,5 @@
-http://www.yahoo.com
-https://www.google.com
-http://www.yahoo.com/games
+https://golang.org
+http://www.reem.com
+http://www.google.com
+http://www.example.com
 http://www.golang.org
