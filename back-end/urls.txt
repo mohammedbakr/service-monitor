@@ -1,5 +1,0 @@
-https://golang.org
-http://www.reem.com
-http://www.google.com
-http://www.example.com
-http://www.golang.org

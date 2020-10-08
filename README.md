@@ -9,14 +9,46 @@ The objective of this project is to create service to allow us to monitor produc
 5- Sending alerts when a specific service down criteria is met, maybe Slack based alerts, emails, Syslog, SNMP traps or similar.<br />
 6- Take corrective actions, as restarting a service or execute a script when a service is down and relevant action is defined.<br />
 
-### Prerequisites
+## Prerequisites
 
+* Apache Server
+* Mysql Database
 * [Node & npm](https://nodejs.org)
 * [Go](https://golang.org)
 
+
 ## Getting Started
 
-Clone the repo:
+## database
+
+For Windows:<br />
+Install [XAMPP](https://www.apachefriends.org/index.html) for an easy quickstart<br />
+open terminal in path "C:\xampp\mysql" and run
+```
+bin\mysql -u <username> -p <password>
+source <source of healthcheck.sql>
+```
+
+for Linux: open terminal and run
+```
+mysql -u <username> -p <password>
+source <source of healthcheck.sql>
+```
+
+### After setting up database
+
+For windows: open terminal and copy
+```
+echo %GOPATH%
+```
+for Linux: open terminal and copy
+```
+echo $GOPATH
+```
+Create in the above path three directories (pkg,src,bin)<br />
+inside src directory create directory named github.com<br />
+
+Clone the repo in github.com directory :
 ```
 git clone https://github.com/k8-proxy/service-monitor.git
 ```
@@ -24,11 +56,15 @@ Or clone the develop branch:
 ```
 git clone -b develop https://github.com/k8-proxy/service-monitor.git
 ```
-To change urls or increment their number open the urls.txt file 
-which will be cloned and insert each url in line
 
 Enter back-end directory and copy this command inside the directory path in terminal.<br />
-To start the back-end server
+
+```
+go get github.com/gorilla/mux
+go get github.com/gorilla/handlers
+go get github.com/go-sql-driver/mysql
+```
+To start the back-end server in the same terminal
 ```
 go run main.go
 ```
@@ -41,7 +77,8 @@ npm start
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Finished 
+## Finished
+
 1-A front-end and back-end application communicates via API.<br />
 2-list of URLs (to be monitored) are stored in a text file.<br />
 3-The backend of the solution should periodically (every 10 seconds) do a HTTP GET request against those URLs<br />
@@ -50,16 +87,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
   5-Response Code.<br />
   6-Response Time (How much time does it took to complete the request), if a request is timing out, this should be the hard coded time out value.<br />
   7-Time Stamp: What was the time when the request took place.<br />
-8-Test the solution with correct URLs, URL that resolve but there is no web server.<br />
+8-Test the solution with correct URLs.<br />
 9-Make sure that in all cases there is data recorded in a correct and consistent format.<br />
-10-Configure the front end page the main one to reload every 30 seconds so it can get the new data.<br />
+10-CRUD operations from text file then shifting to CRUD operations using MySQL database.<br />
+11-Insert time interval for create and update.<br />
+12-Configure the front end page the main one to reload every 30 seconds so it can get the new data.<br />
 
  
 ## In progress
-1-Inserting timeout but working on handling if the request exceeded this time.
-2-Still working on testing the solution with URL that doesn't resolve.
-3-The data recorded should not be kept indefinitely, let us assume that we will keep only the last 200 records per URL.
 
+1-testing the solution with URL that doesn't resolve the url will be skipped and the healthcheck will continue, still working on inserting their own responses
 
 
 ## License

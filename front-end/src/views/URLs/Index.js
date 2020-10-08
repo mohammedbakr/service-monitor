@@ -17,7 +17,6 @@ function Index() {
 
   const deleteUrl = (id) => {
     alert('The URL has been deleted successfully')
-    console.log(id)
     axios.delete(`/urls/${id}`)
       .then()
       .catch()
@@ -65,7 +64,7 @@ function Index() {
         <div className="flex justify-around border-b">
           <h1 className="font-bold text-2xl">Result</h1>
           <Link to="/create">
-            <button className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
               Add URLs
             </button>
           </Link>

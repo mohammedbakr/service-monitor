@@ -25,7 +25,6 @@ function Show(props) {
   }
 
   if (results.data) {
-    currentUrl = results.data.pop().url
     content =
       results.data.map((result, index) => 
         <tr key={index}>
@@ -35,6 +34,7 @@ function Show(props) {
           {(result.code >= 200 && result.code < 400) ? <td className="border py-2 bg-green-500">{result.code}</td> : <td className="border py-2 bg-red-500">{result.code}</td>}
         </tr>
       )
+    currentUrl = results.data.pop() ? results.data.pop().url : null
   }
 
   return (
@@ -44,11 +44,11 @@ function Show(props) {
       <div style={{display: content ? '' : 'none'}}>
         <div className="flex justify-between">
           <h1 className="text-xl">
-            <span className="font-bold">Results of: </span>
-            <span className="text-blue-500">{currentUrl}</span>
+            <span className="font-bold">Results</span>
+            <span className="text-blue-500" style={{display: currentUrl ? '' : 'none'}}> of: {currentUrl}</span>
           </h1>
           <Link to={`/urls/${id}/edit`}>
-            <button className="bg-blue-500 rounded-lg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
               Edit URL
             </button>
           </Link>
